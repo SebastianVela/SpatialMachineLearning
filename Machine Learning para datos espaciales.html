@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="Machine Learning para datos espaciales_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Machine Learning para datos espaciales_files/libs/quarto-html/tabby.min.js"></script>
+<script src="Machine Learning para datos espaciales_files/libs/quarto-html/popper.min.js"></script>
+<script src="Machine Learning para datos espaciales_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="Machine Learning para datos espaciales_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Machine Learning para datos espaciales_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="Machine Learning para datos espaciales_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.2.269">
+
+  <meta name="author" content="Jhon Sebastián Vela Salcedo">
+  <title>Machine Learning para datos espaciales</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="Machine Learning para datos espaciales_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="Machine Learning para datos espaciales_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="Machine Learning para datos espaciales_files/libs/revealjs/dist/theme/quarto.css" id="theme">
+  <link rel="stylesheet" href="Ajustes.css">
+  <link href="Machine Learning para datos espaciales_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="Machine Learning para datos espaciales_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="Machine Learning para datos espaciales_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="Machine Learning para datos espaciales_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="Machine Learning para datos espaciales_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="Machine Learning para datos espaciales_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+
+  .callout {
+    margin-top: 1em;
+    margin-bottom: 1em;  
+    border-radius: .25rem;
+  }
+
+  .callout.callout-style-simple { 
+    padding: 0em 0.5em;
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+    display: flex;
+  }
+
+  .callout.callout-style-default {
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+  }
+
+  .callout .callout-body-container {
+    flex-grow: 1;
+  }
+
+  .callout.callout-style-simple .callout-body {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-style-default .callout-body {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-captioned.callout-style-simple .callout-body {
+    margin-top: 0.2em;
+  }
+
+  .callout:not(.callout-captioned) .callout-body {
+      display: flex;
+  }
+
+  .callout:not(.no-icon).callout-captioned.callout-style-simple .callout-content {
+    padding-left: 1.6em;
+  }
+
+  .callout.callout-captioned .callout-header {
+    padding-top: 0.2em;
+    margin-bottom: -0.2em;
+  }
+
+  .callout.callout-captioned .callout-caption  p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+    
+  .callout.callout-captioned.callout-style-simple .callout-content  p {
+    margin-top: 0;
+  }
+
+  .callout.callout-captioned.callout-style-default .callout-content  p {
+    margin-top: 0.7em;
+  }
+
+  .callout.callout-style-simple div.callout-caption {
+    border-bottom: none;
+    font-size: .9rem;
+    font-weight: 600;
+    opacity: 75%;
+  }
+
+  .callout.callout-style-default  div.callout-caption {
+    border-bottom: none;
+    font-weight: 600;
+    opacity: 85%;
+    font-size: 0.9rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-default div.callout-content {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-simple .callout-icon::before {
+    height: 1rem;
+    width: 1rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+  }
+
+  .callout.callout-style-default .callout-icon::before {
+    height: 0.9rem;
+    width: 0.9rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 0.9rem 0.9rem;
+  }
+
+  .callout-caption {
+    display: flex
+  }
+    
+  .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  .callout.no-icon::before {
+    display: none !important;
+  }
+
+  .callout.callout-captioned .callout-body > .callout-content > :last-child {
+    margin-bottom: 0.5rem;
+  }
+
+  .callout.callout-captioned .callout-icon::before {
+    margin-top: .5rem;
+    padding-right: .5rem;
+  }
+
+  .callout:not(.callout-captioned) .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  /* Callout Types */
+
+  div.callout-note {
+    border-left-color: #4582ec !important;
+  }
+
+  div.callout-note .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
+  }
+
+  div.callout-note.callout-style-default .callout-caption {
+    background-color: #dae6fb
+  }
+
+  div.callout-important {
+    border-left-color: #d9534f !important;
+  }
+
+  div.callout-important .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-important.callout-style-default .callout-caption {
+    background-color: #f7dddc
+  }
+
+  div.callout-warning {
+    border-left-color: #f0ad4e !important;
+  }
+
+  div.callout-warning .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-warning.callout-style-default .callout-caption {
+    background-color: #fcefdc
+  }
+
+  div.callout-tip {
+    border-left-color: #02b875 !important;
+  }
+
+  div.callout-tip .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-tip.callout-style-default .callout-caption {
+    background-color: #ccf1e3
+  }
+
+  div.callout-caution {
+    border-left-color: #fd7e14 !important;
+  }
+
+  div.callout-caution .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
+  }
+
+  div.callout-caution.callout-style-default .callout-caption {
+    background-color: #ffe5d0
+  }
+
+  </style>
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" data-background-size="contain" class="quarto-title-block center">
+  <h1 class="title">Machine Learning para datos espaciales</h1>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Jhon Sebastián Vela Salcedo 
+</div>
+</div>
+</div>
+
+</section>
+<section>
+<section id="introducción" class="title-slide slide level1 center" data-background-color="#581845">
+<h1>Introducción</h1>
+
+</section>
+<section id="section" class="slide level2" style="font-size: 80%; ">
+<h2></h2>
+<p>Varias áreas de aplicación usando datos espaciales como:</p>
+<ul>
+<li><p>Uso del suelo y clasificación de la clasificación de la cubierta del suelo</p></li>
+<li><p>Caracterización transversal y cambio longitudinal</p></li>
+<li><p>Crecimiento urbano</p></li>
+<li><p>Agricultura y predicción del rendimiento de los cultivos</p></li>
+<li><p>Aparición y propagación de enfermedades infecciosas</p></li>
+<li><p>Transporte y análisis de colisiones</p></li>
+<li><p>Visualización de mapas y cartografía</p></li>
+<li><p>Predicción de trayectorias y patrones de movimiento</p></li>
+<li><p>Clasificación de nubes de puntos</p></li>
+<li><p>Interacción espacial</p></li>
+<li><p>Interpolación espacial y predicción espaciotemporal</p></li>
+</ul>
+</section>
+<section id="marco-de-referencia-para-la-revisión" class="slide level2">
+<h2>Marco de referencia para la revisión</h2>
+
+<img data-src="Graficas/Fig.%201.1.png" class="r-stretch"></section>
+<section id="búsqueda-de-bibliografía-en-web-of-science" class="slide level2">
+<h2>Búsqueda de bibliografía en Web of Science</h2>
+
+<img data-src="Graficas/Fig.%201.2.png" class="r-stretch"></section></section>
+<section>
+<section id="machine-learning" class="title-slide slide level1 center" data-background-color="#581845">
+<h1>Machine Learning</h1>
+
+</section>
+<section id="categorías" class="slide level2">
+<h2>Categorías</h2>
+
+<img data-src="Graficas/Fig.%202.1.png" class="r-stretch"></section>
+<section class="slide level2">
+
+
+<img data-src="Graficas/Fig.%202.2.png" class="r-stretch"></section></section>
+<section>
+<section id="propiedades-de-los-datos-espaciales" class="title-slide slide level1 center" data-background-color="#581845">
+<h1>Propiedades de los datos espaciales</h1>
+
+</section>
+<section class="slide level2">
+
+<h3 id="dependencia-espacial">1. Dependencia espacial</h3>
+<div style="font-size: 80%; ">
+<ul>
+<li>I de Moran:</li>
+</ul>
+<p><span class="math display">\[I = \frac{\sum_i \sum_j W_{S_i S_j} (Z(S_i) - \overline Z) (Z(S_j) - \overline Z)}{\sigma^2(\sum_i \sum_j W_{ij})}\]</span></p>
+<ul>
+<li>Semivariograma:</li>
+</ul>
+<p><span class="math display">\[\hat \gamma(h) = \frac{1}{2d(h)} \sum_{|S_i - S_j|=h} (Z(S_i) - Z(S_j))^2\]</span> - Componentes más complejas de dependencia espacial son el efecto de vecindad (Neighborhood effect) y el efecto de contagio (spillover effect)</p>
+</div>
+</section>
+<section class="slide level2">
+
+<div style="font-size: 80%; ">
+<h3 id="heterogeneidad-espacial">2. Heterogeneidad espacial</h3>
+<ul>
+<li><p>Proceso no estacionario (media y varianza no son constantes)</p></li>
+<li><p>Anisotropía (la dependencia espacial es diferente en varias direcciones)</p></li>
+</ul>
+<h3 id="escala">3. Escala</h3>
+<p>Existen dos retos cuando se trabaja con datos espaciales con unidades de área:</p>
+<ul>
+<li><p>el problema de la unidad de área modificable (MAUP), está relacionada con la sensibilidad de losresultados analíticos a la definición de las unidades geográficas para las que se recogen los datos</p></li>
+<li><p>el problema del contexto geográfico incierto (UGCoP). Se refiere a la sensibilidad de las variables contextuales y resultados analíticos a las diferentes delimitaciones de las unidades contextuales</p></li>
+</ul>
+</div>
+</section></section>
+<section>
+<section id="machine-learning-para-datos-espaciales" class="title-slide slide level1 center" data-background-color="#581845">
+<h1>Machine Learning para datos espaciales</h1>
+
+</section>
+<section id="section-1" class="slide level2">
+<h2></h2>
+<p>Para llevar a cabo el aprendizaje automático de datos espaciales, necesitamos añadir relaciones de localización, distancia o relaciones topológicas al proceso de aprendizaje.</p>
+<p>El proceso de aprendizaje es el siguiente:</p>
+
+<img data-src="Graficas/Fig.%203.1.png" class="r-stretch quarto-figure-center"></section>
+<section id="matriz-de-observaciones-espaciales" class="slide level2">
+<h2>1. Matriz de observaciones espaciales</h2>
+<div style="font-size: 80%;">
+<p>Una forma típica de incluir propiedades espaciales en ML es encontrar una representación de esas propiedades en la matriz de observaciones X.</p>
+<p>Varios aspectos críticos intervienen en la creación de una matriz de observación espacial utilizada como entrada para el algoritmo de aprendizaje:</p>
+<p>1.1. El muestreo espacial</p>
+<p>1.2. Las características espaciales</p>
+<p>1.3. La reducción de la dimensionalidad</p>
+<p>1.4. El tratamiento de los datos faltantes</p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="el-muestreo-espacial">1.1. El muestreo espacial</h3>
+<div style="font-size: 80%; ">
+<p>Dos puntos importantes:</p>
+<ul>
+<li><p>Todo el conjunto de muestras (entrenamiento y validación) debe representar el fenómeno que se está aprendiendo, lo que incluye un problema de muestreo</p></li>
+<li><p>La representatividad de las muestras se define en el espacio de atributos, espacial o espacio temporal (o varios espacios a la vez) según la aplicación</p></li>
+</ul>
+<p>El sobremuestreo no afectará al proceso de aprendizaje porque la suposición de i.i.d. no es necesaria en el ML. Sin embargo, puede sobrestimar la precisión del aprendizaje en el proceso de evaluación (Ej. Clasificación).</p>
+<p>Una de las aplicaciones del aprendizaje por refuerzo es el muestreo espacial eficiente</p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="las-características-espaciales">1.2. Las características espaciales</h3>
+<div style="font-size: 80%; ">
+<p>Existen varios métodos para incluir los componentes espaciales de los datos en la matriz de observación:</p>
+<ul>
+<li><p>Añadir directamente la referencia espacial a la matriz de datos como atributos</p>
+<ul>
+<li><p>Uno de ellos consiste en añadir coordenadas (por ejemplo, latitud y longitud), esto puede generar un sobreajuste considerable porque están muy correlacionados</p></li>
+<li><p>Añadir observaciones vinculadas a una región como efectos fijos de esa región (no puede no puede capturar estructuras complejas)</p></li>
+</ul></li>
+<li><p>Además de la información de referencia espacial, las entidades y los fenómenos espaciales tienen información intraobjeto (geométrica, espectral, textural y estadística) y entre objetos (contextual y relacional).</p></li>
+</ul>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="la-reducción-de-la-dimensionalidad">1.3. La reducción de la dimensionalidad</h3>
+<div style="font-size: 80%; ">
+<p>Un número desproporcionado de variables interrelacionadas puede afectar negativamente el aprendizaje de diversas maneras.</p>
+<p>Existen varios métodos de reducción de la dimensionalidad, entre ellos:</p>
+<ul>
+<li><p>El análisis de componentes principales (PCA)</p></li>
+<li><p>El análisis factorial</p></li>
+<li><p>El análisis de componentes independientes</p></li>
+<li><p>Los mapas autoorganizados (SOM)</p></li>
+</ul>
+</div>
+</section>
+<section class="slide level2">
+
+<h4 id="el-análisis-de-componentes-principales-pca">El análisis de componentes principales (PCA)</h4>
+<div style="font-size: 80%; ">
+<p>El algoritmo se usa para:</p>
+<ul>
+<li><p>Eliminación de características</p></li>
+<li><p>Extracción de características</p></li>
+</ul>
+</div>
+</section>
+<section class="slide level2">
+
+<h4 id="funcionamiento">Funcionamiento:</h4>
+<div style="font-size: 80%; ">
+<ul>
+<li><p>El objetivo es calcular una matriz que resuma cómo se relacionan todas nuestras variables entre sí.</p></li>
+<li><p>Luego dividiremos esta matriz en dos componentes separados: dirección y magnitud.</p></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://miro.medium.com/max/640/1*P8_C9uk3ewpRDtevf9wVxg.png"></p>
+</figure>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div style="font-size: 80%; ">
+<ul>
+<li><p>Transformaremos nuestros datos originales para alinearlos con estas direcciones importantes (que son combinaciones de nuestras variables originales).</p></li>
+<li><p>Al identificar qué “direcciones” son las más “importantes”, podemos comprimir o proyectar nuestros datos en un espacio más pequeño eliminando las “direcciones” que son las “menos importantes”.</p></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://miro.medium.com/max/640/1*wsezmnzg-0N_RP3meYNXlQ.png"></p>
+</figure>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<h4 id="algoritmo">Algoritmo</h4>
+<div style="font-size: 80%; ">
+<ul>
+<li><p>Tome la matriz de variables independientes <span class="math inline">\(X\)</span> y, para cada columna, reste la media de esa columna de cada entrada.</p></li>
+<li><p>Si la importancia de las características es independiente de la varianza de las características, divida cada observación en una columna por la desviación estándar de esa columna.Esta matriz es llamada <span class="math inline">\(Z\)</span>.</p></li>
+<li><p>Calcular la matriz de covarianzas <span class="math inline">\(C = Z'Z\)</span></p></li>
+<li><p>Calcule los vectores propios y sus valores propios correspondientes a la matriz de covarianzas <span class="math inline">\(C\)</span>. Usando la descomposición de valores singulares <em>SVD</em> en donde se descompone como <span class="math inline">\(C = LVL^T\)</span>, donde <span class="math inline">\(L\)</span> es la matriz de vectores propios y <span class="math inline">\(V\)</span> es la matriz diagonal con valores propios en la diagonal y valores de cero en cualquier otro lugar.</p></li>
+</ul>
+</div>
+</section>
+<section class="slide level2">
+
+<div style="font-size: 80%; ">
+<ul>
+<li><p>Tome los valores propios <span class="math inline">\(\lambda_1, \lambda_2, \dots, \lambda_p\)</span> p y ordénelos de mayor a menor. Al hacerlo, ordene los vectores propios en <span class="math inline">\(L\)</span> en consecuencia.Esta matriz ordenada de vectores propios se llama <span class="math inline">\(L^*\)</span></p></li>
+<li><p>Calcula <span class="math inline">\(Z^* = ZL^*\)</span> . Esta nueva matriz, <span class="math inline">\(Z^*\)</span> , es una versión centrada/estandarizada de <span class="math inline">\(X\)</span> pero ahora cada observación es una combinación de las variables originales, donde los pesos están determinados por el vector propio.</p></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://miro.medium.com/max/720/1*V3JWBvxB92Uo116Bpxa3Tw.png"></p>
+</figure>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<h4 id="section-2"></h4>
+<div style="font-size: 80%; ">
+<p>El PCA puede ponderarse localmente en el espacio de los atributos (LWPCA) o en espacio geográfico (GWPCA) para tener en cuenta ciertas heterogeneidades.</p>
+<ul>
+<li><p>En el primer caso, LWPCA, suponemos la estructura de covarianza es homogénea para las observaciones que están cerca unas de otras en el espacio de atributos, <span class="math inline">\(𝐿_𝑖 𝑉_𝑖 𝐿_𝑖^𝑇=𝐶_𝑖\)</span></p></li>
+<li><p>El segundo, el GWPCA para la ubicación <span class="math inline">\((𝑆_𝑖, 𝑆_𝑗 )\)</span>, es escrito como, <span class="math inline">\(𝐿𝑉𝐿^𝑇 |(𝑆_𝑖, 𝑆_𝑗 )=𝐶(𝑆_𝑖, 𝑆_𝑗)\)</span></p></li>
+</ul>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="el-tratamiento-de-los-datos-faltantes">1.4. El tratamiento de los datos faltantes</h3>
+<div style="font-size: 80%; ">
+<p>Hay diferentes maneras de abordar los valores que faltan, como: - La agregación de datos en una granularidad más gruesa - La eliminación de las observaciones con valores perdidos del conjunto de datos - La imputación de valores</p>
+<p>Los métodos de predicción espacial siempre pueden utilizarse para imputar valores para conjuntos de datos con valores perdidos</p>
+<p>Los enfoques más conocidos para la predicción espacial son los modelos estadísticos espaciales (por ejemplo, la regresión ponderada geográficamente) y los modelos geoestadísticos, como kriging</p>
+<p>El análisis probabilístico de componentes principales (PPCA), por ejemplo, es una extensión probabilística de PCA y se ha utilizado para imputar valores perdidos</p>
+</div>
+</section>
+<section id="algoritmo-de-aprendizaje" class="slide level2">
+<h2>2. Algoritmo de aprendizaje</h2>
+<div style="font-size: 80%;">
+<p>En lugar de generar nuevas características espaciales y procesarlas con los métodos tradicionales de aprendizaje de aprendizaje automático, podemos incorporar directamente las propiedades espaciales en el algoritmo de aprendizaje.</p>
+<p>Entre todos los métodos de ML, los modelos más utilizados son: 2.1. Los árboles de decisión (DT) 2.2. Los bosques aleatorios 2.3. Las máquinas de soporte (SVM) 2.4. Las redes neuronales 2.5. Las redes neuronales profundas (DNN)</p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="los-árboles-de-decisión-dt">2.1. Los árboles de decisión (DT)</h3>
+<h4 id="estructura">Estructura</h4>
+<div style="font-size: 80%;">
+<p>Un árbol consta esencialmente de tres componentes principales: La raíz, las ramas y los nodos.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://miro.medium.com/max/720/1*Ru0tIhJBdv__T0LfYxL9Gw.png"></p>
+</figure>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div style="font-size: 80%;">
+<ul>
+<li><p>Los árboles de decisión (DT) son métodos populares de ML adaptados a los problemas espaciales para superar la violación del supuesto de i.i.d. Como clase, los clasificadores de árboles de decisión basados en la entropía espacial utilizan la ganancia de información junto con la autocorrelación espacial para seleccionar las pruebas de los nodos de los árboles candidatos en un marco espacial rasterizado.</p></li>
+<li><p>Uno de los problemas más frecuentes problemas que se producen en la clasificación de imágenes mediante árboles de decisión es el ruido de sal y pimienta</p></li>
+</ul>
+</div>
+</section>
+<section class="slide level2">
+
+<div style="font-size: 80%;">
+<ul>
+<li><p>El ruido de sal y pimienta se produce cuando la etiqueta predicha de un píxel específico difiere de sus píxeles vecinos y puede ser el resultado de una alta autocorrelación espacial en las etiquetas de clase de los datos de muestra utilizados para el entrenamiento</p></li>
+<li><p>Jiang et al.&nbsp;(2003) proponen un árbol de decisión espacial basado en pruebas focales (FTSDT), en el que la dirección de recorrido del árbol de una muestra de aprendizaje se basa en las propiedades locales y focales (de vecindad) de las características. Utilizan indicadores locales de asociación espacial - Lisa - como estadísticas de autocorrelación espacial para medir la dependencia espacial entre los píxeles de la vecindad.</p></li>
+</ul>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="los-bosques-aleatorios">2.2. Los bosques aleatorios</h3>
+
+<img data-src="https://miro.medium.com/max/720/1*MkeRi6EMvvZvUpHmQU0dWg.webp" class="r-stretch quarto-figure-center"></section>
+<section class="slide level2">
+
+
+<img data-src="https://miro.medium.com/max/720/1*F5jHRWCpYqGhaPWCusfJhQ.png" class="r-stretch quarto-figure-center"></section>
+<section class="slide level2">
+
+<h4 id="paso-a-paso">Paso a paso</h4>
+<div style="font-size: 80%;">
+<ul>
+<li><p>Seleccione muestras aleatorias del conjunto de datos utilizando la agregación bootstrap.</p></li>
+<li><p>Construya un árbol de decisión para cada muestra y guarde los resultados de predicción de cada árbol.</p></li>
+<li><p>Calcule un voto para cada resultado predicho.</p></li>
+<li><p>Determine qué resultado predicho tiene más votos. Esta será su predicción final.</p></li>
+</ul>
+</div>
+</section>
+<section class="slide level2">
+
+<div style="font-size: 80%;">
+<ul>
+<li><p>Se han desarrollado versiones ponderadas geográficamente de los árboles de decisión para para tener en cuenta la heterogeneidad espacial.</p></li>
+<li><p>Quiñones et al.&nbsp;(2021) presentaron un bosque aleatorio ponderado geográficamente (GW-RF) de la diabetes tipo 2 y los factores de riesgo en los condados de Estados Unidos.</p></li>
+<li><p>De forma similar a la regresión ponderada geográficamente (GWR), la matriz de pesos espaciales y los bosques aleatorios (RF) se integran en un marco de análisis de regresión local.</p></li>
+</ul>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="las-máquinas-de-soporte-vectorial-svm">2.3. Las máquinas de soporte vectorial (SVM)</h3>
+<div style="font-size: 80%;">
+<ul>
+<li><p>Este método se basa en la separación de clases mediante un hiperplano (Clasificador de margen máximo)</p></li>
+<li><p>Las máquinas de soporte vectorial (SVM) se han utilizado para problemas de clasificación y regresión. La idea de la SVM es mapear el espacio de entrada original a un espacio de características de mayor dimensionalidad en el que las observaciones son separables por hiperplanos</p></li>
+<li><p><span class="math inline">\(\xi\)</span> se llama término de regularización. Los términos de regularización se colocan en la función objetivo para controlar la complejidad del modelo y evitar el sobreajuste</p></li>
+</ul>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="Graficas/Fig.%203.2.png" class="r-stretch quarto-figure-center"></section>
+<section class="slide level2">
+
+<div style="font-size: 80%;">
+<p>¿Y si no existe ningún plano de separación?</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://miro.medium.com/max/720/1*tSLHw6cFWFUeYVeO_ahyQQ.webp"></p>
+</figure>
+</div>
+<ul>
+<li><p>En este caso, no existe un clasificador de margen máximo.</p></li>
+<li><p>Utilizamos un clasificador de vectores de soporte que casi puede separar las clases utilizando un margen suave llamado clasificador de vectores de soporte.</p></li>
+</ul>
+</div>
+</section>
+<section class="slide level2">
+
+<div style="font-size: 80%;">
+<p>La máquina de vectores de soporte es una extensión del clasificador de vectores de soporte que resulta de la ampliación del espacio de características mediante kernels.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://editor.analyticsvidhya.com/uploads/1403824.png"></p>
+</figure>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="https://miro.medium.com/max/720/1*YFvTJzdaamy1d1zT7oSMLw.webp" class="r-stretch quarto-figure-center"></section>
+<section class="slide level2">
+
+<div style="font-size: 80%;">
+<ul>
+<li><p>Lee et al.&nbsp;(2005) sugirieron una extensión de la SVM denominada campo aleatorio de vectores de soporte que modela explícitamente las dependencias espaciales en la clasificación utilizando campos aleatorios condicionales (CRF).</p></li>
+<li><p>El modelo contiene dos componentes: la función potencial de coincidencia de observaciones y la función potencial de consistencia local. La primera modela la relación entre las observaciones y las etiquetas de clase utilizando un clasificador SVM, y la segunda modela la relación con las etiquetas del vecindario. La función de potencial de consistencia local penaliza la discontinuidad entre los sitios pares.</p></li>
+</ul>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="las-redes-neuronales-profundas-dnn">2.4. Las redes neuronales profundas (DNN)</h3>
+<div style="font-size: 80%;">
+<ul>
+<li><p>Las DNNs suelen estar compuestas por varios módulos no lineales pero sencillos que representan datos a diferentes niveles.</p></li>
+<li><p>Partiendo de los datos en bruto, cada módulo transforma la representación de un nivel en una representación de un nivel superior (más abstracto). En el proceso y utilizando el algoritmo de retropropagación (backpropagation), la máquina puede aprender funciones muy complejas</p></li>
+</ul>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="Graficas/Fig.%203.3.png" class="r-stretch quarto-figure-center"></section>
+<section class="slide level2">
+
+<div style="font-size: 80%;">
+<p>Las redes neuronales más populares para datos espaciales pueden clasificarse a grandes rasgos en cuatro categorías:</p>
+<ul>
+<li>Redes neuronales convolucionales (CNN)</li>
+<li>Redes neuronales gráficas profundas (GNN)</li>
+<li>Redes neuronales generativas</li>
+<li>Las redes neuronales recurrentes (RNN) cuando se combinan con las CNN</li>
+</ul>
+</div>
+</section>
+<section class="slide level2">
+
+<h4 id="las-redes-neuronales-convolucionales-cnn">Las redes neuronales convolucionales (CNN)</h4>
+<div style="font-size: 80%;">
+<ul>
+<li><p>Incluyen capas convolucionales y capas de agrupación.</p></li>
+<li><p>Las capas convolucionales funcionan a partir de la convolución de una ventana deslizante (filtro) con los valores de los píxeles de la imagen. Los pesos del filtro se determinan automáticamente a través del proceso de aprendizaje de la red.</p></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="Graficas/Fig.%203.4.png"></p>
+</figure>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<h4 id="arquitectura">Arquitectura</h4>
+
+<img data-src="https://miro.medium.com/max/720/1*uAeANQIOQPqWZnnuH-VEyw.webp" class="r-stretch quarto-figure-center"></section>
+<section class="slide level2">
+
+<h4 id="imagen-de-entrada">Imagen de entrada</h4>
+
+<img data-src="https://miro.medium.com/max/640/1*15yDvGKV47a0nkf5qLKOOQ.webp" class="r-stretch quarto-figure-center"></section>
+<section class="slide level2">
+
+<h4 id="capa-de-convolución---kernel">Capa de convolución - Kernel</h4>
+
+<img data-src="https://miro.medium.com/max/640/1*GcI7G-JLAQiEoCON7xFbhg.gif" class="r-stretch quarto-figure-center"></section>
+<section class="slide level2">
+
+
+<img data-src="https://miro.medium.com/max/720/1*ciDgQEjViWLnCbmX-EeSrA.gif" class="r-stretch quarto-figure-center"></section>
+<section class="slide level2">
+
+<h4 id="capa-de-agrupación">Capa de agrupación</h4>
+
+<img data-src="https://miro.medium.com/max/640/1*uoWYsCV5vBU8SHFPAPao-w.gif" class="r-stretch quarto-figure-center"></section>
+<section class="slide level2">
+
+
+<img data-src="https://miro.medium.com/max/640/1*KQIEqhxzICU7thjaQBfPBQ.webp" class="r-stretch quarto-figure-center"></section>
+<section class="slide level2">
+
+
+<img data-src="https://miro.medium.com/max/720/1*uAeANQIOQPqWZnnuH-VEyw.webp" class="r-stretch quarto-figure-center"></section>
+<section class="slide level2">
+
+<div style="font-size: 80%;">
+<ul>
+<li><p>Esta característica de las CNN se ha utilizado de forma limitada para definir automáticamente los pesos de la matriz W en otras aplicaciones espaciales.</p></li>
+<li><p>Las capas de pooling agregan los píxeles vecinos en un único píxel, reduciendo las dimensiones totales de la imagen.</p></li>
+<li><p>A medida que aumenta el número de capas convolucionales y de pooling, la red se vuelve más profunda y puede extraer características más abstractas. Una red de clasificación sigue finalmente el procesamiento de estas capas.</p></li>
+</ul>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="precisión-espacial">2.5. Precisión espacial</h3>
+<div style="font-size: 80%;">
+<ul>
+<li><p>Las medidas de la precisión de los datos espaciales son esenciales para ser consideradas en la función objetivo en el aprendizaje automático para una serie de aplicaciones geoespaciales.</p></li>
+<li><p>Cuando las variables están rasterizadas, una forma típica de evaluar la precisión de la predicción es medir la similitud entre los mapas predichos y los reales.</p></li>
+</ul>
+<p><span class="math display">\[F = Similaridad(\text{Presición de la Clasificación})\]</span></p>
+</div>
+</section>
+<section class="slide level2">
+
+<div style="font-size: 80%;">
+<ul>
+<li>Los autores sugieren añadir un término a la función objetivo para medir la precisión espacial precisión espacial, que podría ser la distancia media a la predicción más cercana. Por lo tanto, podemos reescribir la función objetivo como sigue:</li>
+</ul>
+<p><span class="math display">\[F = Similaridad[(1 - \alpha)\text{Presición de la Clasificación} + \alpha \text{Presición espacial}]\]</span> donde <span class="math inline">\(\alpha\)</span> es un parámetro regularizador que se ajusta durante el entrenamiento.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="Graficas/Fig.%203.5.png"></p>
+</figure>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="generalización">2.6. Generalización</h3>
+<div style="font-size: 80%;">
+<ul>
+<li><p>La generalización es la capacidad de generalizar un modelo entrenado basado en un conjunto de datos a conjuntos de datos futuros.</p></li>
+<li><p>Un conjunto de datos suele dividirse en tres conjuntos mutuamente excluyentes:</p>
+<ul>
+<li>Un conjunto de entrenamiento</li>
+<li>Un conjunto de validación</li>
+<li>Un conjunto de prueba</li>
+</ul></li>
+<li><p>En cada iteración ajustamos un modelo a nuestro conjunto de datos de entrenamiento y calculamos una función objetivo para medir el rendimiento del aprendizaje.</p></li>
+</ul>
+</div>
+</section>
+<section class="slide level2">
+
+<div style="font-size: 80%;">
+<ul>
+<li><p>Se utiliza el conjunto de datos de validación para evaluar la capacidad del modelo para ajustarse a otro conjunto de datos para la generalización.</p></li>
+<li><p>Con el conjunto de datos de prueba se pueden utilizar métodos de validación más complejos, como la validación cruzada k-fold, para garantizar el mejor ajuste de los conjuntos de datos de entrenamiento, prueba y validación.</p></li>
+</ul>
+</div>
+</section></section>
+<section>
+<section id="aprendizaje-espacio---tiemporal" class="title-slide slide level1 center" data-background-color="#581845">
+<h1>Aprendizaje espacio - tiemporal</h1>
+
+</section>
+<section id="las-redes-convolucionales-de-memoria-a-corto-plazo-lstm" class="slide level2">
+<h2>Las redes convolucionales de memoria a corto plazo (LSTM)</h2>
+<div style="font-size: 80%;">
+<ul>
+<li><p>Las redes neuronales recurrentes convolucionales (RNN) y, en especial, las redes convolucionales de memoria a corto plazo (LSTM) pueden aplicarse ampliamente al aprendizaje espacio-temporal de los datos de la red datos.</p></li>
+<li><p>LSTM es un tipo de red neuronal recurrente con la capacidad de memorizar dependencias temporales en los datos. La combinación de esta característica con el poder de las CNN para para aprender las características espaciales jerárquicas puede proporcionar un modelo automático de ML de un solo paso para para tener en cuenta la dependencia espacio-temporal</p></li>
+</ul>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="red-neuronal-recurente-rnn-y-lstm">Red Neuronal Recurente (RNN) y LSTM</h3>
+<div style="font-size: 80%;">
+<ul>
+<li><p>Las redes neuronales recurrentes sufren de memoria a corto plazo. Si una secuencia es lo suficientemente larga, tendrán dificultades para llevar información de pasos de tiempo anteriores a los posteriores.</p></li>
+<li><p>LSTM se creo como solución a la memoria a corto plazo. Tienen mecanismos internos llamados puertas que pueden regular el flujo de información.</p></li>
+<li><p>Estas puertas pueden aprender qué datos en una secuencia es importante conservar o desechar. Al hacerlo, puede pasar información relevante a lo largo de la larga cadena de secuencias para hacer predicciones.</p></li>
+</ul>
+</div>
+</section>
+<section class="slide level2">
+
+<div style="font-size: 80%;">
+<p>Un RNN funciona así; Las primeras palabras se transforman en vectores legibles por máquina. Luego, la RNN procesa la secuencia de vectores uno por uno.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://miro.medium.com/max/720/1*AQ52bwW55GsJt6HTxPDuMA.gif" width="900" height="325"></p>
+</figure>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div style="font-size: 80%;">
+<p>Pasa el estado oculto anterior al siguiente paso de la secuencia. El estado oculto actúa como la memoria de las redes neuronales.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://miro.medium.com/max/1400/1*o-Cq5U8-tfa1_ve2Pf3nfg.gif"></p>
+</figure>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div style="font-size: 80%;">
+<p>Primero, la entrada y el estado oculto anterior se combinan para formar un vector. Ese vector ahora tiene información sobre la entrada actual y las entradas anteriores. El vector pasa por la activación de tanh y la salida es el nuevo estado oculto, o la memoria de la red.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://miro.medium.com/max/1400/1*WMnFSJHzOloFlJHU6fVN-g.gif"></p>
+</figure>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div style="font-size: 80%;">
+<p>La activación de tanh se utiliza para ayudar a regular los valores que fluyen a través de la red. La función tanh reduce los valores para que siempre estén entre -1 y 1.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://miro.medium.com/max/1400/1*iRlEg1GBKRzGTre5aOQUCg.gif" width="550" height="250"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://miro.medium.com/max/1400/1*gFC2bTg3uihp1klknWU0qg.gif"></p>
+</figure>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<h4 id="lstm">LSTM</h4>
+<div style="font-size: 80%;">
+<p>Un LSTM tiene un flujo de control similar al de una red neuronal recurrente. Procesa los datos que transmiten información a medida que se propaga hacia adelante. Las diferencias son las operaciones dentro de las células del LSTM.</p>
+<p>Estas operaciones se utilizan para permitir que el LSTM conserve u olvide información.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://miro.medium.com/max/1400/1*0f8r3Vd-i4ueYND1CUrhMA.webp" width="700" height="400"></p>
+</figure>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<h4 id="sigmoideo">Sigmoideo</h4>
+<div style="font-size: 80%;">
+<ul>
+<li>Gates contiene activaciones sigmoideas. Una activación sigmoidea es similar a la activación de tanh. En lugar de aplastar los valores entre -1 y 1, aplasta los valores entre 0 y 1. Eso es útil para actualizar u olvidar datos porque cualquier número que se multiplique por 0 es 0, lo que hace que los valores desaparezcan o se “olviden”.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://miro.medium.com/max/1400/1*rOFozAke2DX5BmsX2ubovw.gif"></p>
+</figure>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<h4 id="puerta-de-olvido">Puerta de olvido</h4>
+<div style="font-size: 80%;">
+<p>Primero, tenemos la puerta del olvido. Esta puerta decide qué información debe desecharse o conservarse. La información del estado oculto anterior y la información de la entrada actual se pasan a través de la función sigmoidea.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://miro.medium.com/max/1400/1*GjehOa513_BgpDDP6Vkw2Q.gif"></p>
+</figure>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<h4 id="puerta-de-entrada">Puerta de entrada</h4>
+<div style="font-size: 80%;">
+<p>Para actualizar el estado de la celda, tenemos la puerta de entrada. Primero, pasamos el estado oculto anterior y la entrada actual a una función sigmoidea.</p>
+<p>También pasa el estado oculto y la entrada actual a la función tanh para reducir los valores entre -1 y 1 para ayudar a regular la red.</p>
+<p>Luego, multiplica la salida de tanh con la salida sigmoidea. La salida sigmoide decidirá qué información es importante mantener de la salida tanh.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://miro.medium.com/max/1400/1*TTmYy7Sy8uUXxUXfzmoKbA.gif" width="700" height="350"></p>
+</figure>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<h4 id="estado-de-la-celda">Estado de la celda</h4>
+<div style="font-size: 80%;">
+<p>Ahora deberíamos tener suficiente información para calcular el estado de la celda. Primero, el estado de la celda se multiplica puntualmente por el vector de olvido.</p>
+<p>Luego tomamos la salida de la puerta de entrada y hacemos una suma puntual que actualiza el estado de la celda a nuevos valores que la red neuronal considera relevantes. Eso nos da nuestro nuevo estado de la celda.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://miro.medium.com/max/1400/1*S0rXIeO_VoUVOyrYHckUWg.gif" width="700" height="350"></p>
+</figure>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<h4 id="puerta-de-salida">Puerta de salida</h4>
+<div style="font-size: 80%;">
+<p>Por último tenemos la puerta de salida. La puerta de salida decide cuál debería ser el siguiente estado oculto.</p>
+<p>Primero, pasamos el estado oculto anterior y la entrada actual a una función sigmoidea. Luego pasamos el estado de celda recién modificado a la función tanh. Multiplicamos la salida de tanh con la salida sigmoide para decidir qué información debe llevar el estado oculto. La salida es el estado oculto. El nuevo estado de celda y el nuevo oculto se transfieren al siguiente paso de tiempo.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://miro.medium.com/max/1400/1*VOXRGhOShoWWks6ouoDN3Q.gif" width="700" height="340"></p>
+</figure>
+</div>
+</div>
+</section></section>
+<section id="gracias" class="title-slide slide level1 center" data-background-color="#581845">
+<h1>Gracias</h1>
+
+<img src="Logo.jpg" class="slide-logo r-stretch"><div class="footer footer-default">
+
+</div>
+</section>
+    </div>
+  </div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="Machine Learning para datos espaciales_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="Machine Learning para datos espaciales_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="Machine Learning para datos espaciales_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="Machine Learning para datos espaciales_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="Machine Learning para datos espaciales_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="Machine Learning para datos espaciales_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="Machine Learning para datos espaciales_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="Machine Learning para datos espaciales_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="Machine Learning para datos espaciales_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="Machine Learning para datos espaciales_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="Machine Learning para datos espaciales_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': true,
+'smaller': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":false},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const clipboard = new window.ClipboardJS('.code-copy-button', {
+        target: function(trigger) {
+          return trigger.previousElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      });
+      function tippyHover(el, contentFn) {
+        const config = {
+          allowHTML: true,
+          content: contentFn,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'quarto-reveal',
+          placement: 'bottom-start'
+        };
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          return note.innerHTML;
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
+
+</body></html>

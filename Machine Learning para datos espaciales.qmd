@@ -1,0 +1,631 @@
+---
+title: "Machine Learning para datos espaciales"
+author: "Jhon Sebastián Vela Salcedo"
+format: 
+  revealjs:
+    theme: simple
+    logo: Logo.jpg
+    css: Ajustes.css
+    slide-number: true
+    chalkboard: 
+      buttons: false
+    preview-links: auto
+title-slide-attributes:
+  data-background-size: contain
+editor: visual
+resources:
+  - demo.pdf
+---
+
+# Introducción {background-color="#581845"}
+
+##  {style="font-size: 80%; "}
+
+Varias áreas de aplicación usando datos espaciales como:
+
+-   Uso del suelo y clasificación de la clasificación de la cubierta del suelo
+
+-   Caracterización transversal y cambio longitudinal
+
+-   Crecimiento urbano
+
+-   Agricultura y predicción del rendimiento de los cultivos
+
+-   Aparición y propagación de enfermedades infecciosas
+
+-   Transporte y análisis de colisiones
+
+-   Visualización de mapas y cartografía
+
+-   Predicción de trayectorias y patrones de movimiento
+
+-   Clasificación de nubes de puntos
+
+-   Interacción espacial
+
+-   Interpolación espacial y predicción espaciotemporal
+
+## Marco de referencia para la revisión
+
+![](Graficas/Fig.%201.1.png)
+
+## Búsqueda de bibliografía en Web of Science
+
+![](Graficas/Fig.%201.2.png)
+
+# Machine Learning {background-color="#581845"}
+
+## Categorías
+
+![](Graficas/Fig.%202.1.png)
+
+------------------------------------------------------------------------
+
+![](Graficas/Fig.%202.2.png)
+
+# Propiedades de los datos espaciales {background-color="#581845"}
+
+------------------------------------------------------------------------
+
+### 1. Dependencia espacial
+
+::: {style="font-size: 80%; "}
+-   I de Moran:
+
+$$I = \frac{\sum_i \sum_j W_{S_i S_j} (Z(S_i) - \overline Z) (Z(S_j) - \overline Z)}{\sigma^2(\sum_i \sum_j W_{ij})}$$
+
+-   Semivariograma:
+
+$$\hat \gamma(h) = \frac{1}{2d(h)} \sum_{|S_i - S_j|=h} (Z(S_i) - Z(S_j))^2$$ - Componentes más complejas de dependencia espacial son el efecto de vecindad (Neighborhood effect) y el efecto de contagio (spillover effect)
+:::
+
+------------------------------------------------------------------------
+
+::: {style="font-size: 80%; "}
+### 2. Heterogeneidad espacial
+
+-   Proceso no estacionario (media y varianza no son constantes)
+
+-   Anisotropía (la dependencia espacial es diferente en varias direcciones)
+
+### 3. Escala
+
+Existen dos retos cuando se trabaja con datos espaciales con unidades de área:
+
+-   el problema de la unidad de área modificable (MAUP), está relacionada con la sensibilidad de losresultados analíticos a la definición de las unidades geográficas para las que se recogen los datos
+
+-   el problema del contexto geográfico incierto (UGCoP). Se refiere a la sensibilidad de las variables contextuales y resultados analíticos a las diferentes delimitaciones de las unidades contextuales
+:::
+
+# Machine Learning para datos espaciales {background-color="#581845"}
+
+## 
+
+Para llevar a cabo el aprendizaje automático de datos espaciales, necesitamos añadir relaciones de localización, distancia o relaciones topológicas al proceso de aprendizaje.
+
+El proceso de aprendizaje es el siguiente:
+
+![](Graficas/Fig.%203.1.png){fig-align="center"}
+
+## 1. Matriz de observaciones espaciales
+
+::: {style="font-size: 80%;"}
+Una forma típica de incluir propiedades espaciales en ML es encontrar una representación de esas propiedades en la matriz de observaciones X.
+
+Varios aspectos críticos intervienen en la creación de una matriz de observación espacial utilizada como entrada para el algoritmo de aprendizaje:
+
+1.1. El muestreo espacial
+
+1.2. Las características espaciales
+
+1.3. La reducción de la dimensionalidad
+
+1.4. El tratamiento de los datos faltantes
+:::
+
+------------------------------------------------------------------------
+
+### 1.1. El muestreo espacial
+
+::: {style="font-size: 80%; "}
+Dos puntos importantes:
+
+-   Todo el conjunto de muestras (entrenamiento y validación) debe representar el fenómeno que se está aprendiendo, lo que incluye un problema de muestreo
+
+-   La representatividad de las muestras se define en el espacio de atributos, espacial o espacio temporal (o varios espacios a la vez) según la aplicación
+
+El sobremuestreo no afectará al proceso de aprendizaje porque la suposición de i.i.d. no es necesaria en el ML. Sin embargo, puede sobrestimar la precisión del aprendizaje en el proceso de evaluación (Ej. Clasificación).
+
+Una de las aplicaciones del aprendizaje por refuerzo es el muestreo espacial eficiente
+:::
+
+------------------------------------------------------------------------
+
+### 1.2. Las características espaciales
+
+::: {style="font-size: 80%; "}
+Existen varios métodos para incluir los componentes espaciales de los datos en la matriz de observación:
+
+-   Añadir directamente la referencia espacial a la matriz de datos como atributos
+
+    -   Uno de ellos consiste en añadir coordenadas (por ejemplo, latitud y longitud), esto puede generar un sobreajuste considerable porque están muy correlacionados
+
+    -   Añadir observaciones vinculadas a una región como efectos fijos de esa región (no puede no puede capturar estructuras complejas)
+
+-   Además de la información de referencia espacial, las entidades y los fenómenos espaciales tienen información intraobjeto (geométrica, espectral, textural y estadística) y entre objetos (contextual y relacional).
+:::
+
+------------------------------------------------------------------------
+
+### 1.3. La reducción de la dimensionalidad
+
+::: {style="font-size: 80%; "}
+Un número desproporcionado de variables interrelacionadas puede afectar negativamente el aprendizaje de diversas maneras.
+
+Existen varios métodos de reducción de la dimensionalidad, entre ellos:
+
+-   El análisis de componentes principales (PCA)
+
+-   El análisis factorial
+
+-   El análisis de componentes independientes
+
+-   Los mapas autoorganizados (SOM)
+:::
+
+------------------------------------------------------------------------
+
+#### El análisis de componentes principales (PCA)
+
+::: {style="font-size: 80%; "}
+El algoritmo se usa para:
+
+-   Eliminación de características
+
+-   Extracción de características
+:::
+
+------------------------------------------------------------------------
+
+#### Funcionamiento:
+
+::: {style="font-size: 80%; "}
+-   El objetivo es calcular una matriz que resuma cómo se relacionan todas nuestras variables entre sí.
+
+-   Luego dividiremos esta matriz en dos componentes separados: dirección y magnitud.
+
+![](https://miro.medium.com/max/640/1*P8_C9uk3ewpRDtevf9wVxg.png){fig-align="center"}
+:::
+
+------------------------------------------------------------------------
+
+::: {style="font-size: 80%; "}
+-   Transformaremos nuestros datos originales para alinearlos con estas direcciones importantes (que son combinaciones de nuestras variables originales).
+
+-   Al identificar qué "direcciones" son las más "importantes", podemos comprimir o proyectar nuestros datos en un espacio más pequeño eliminando las "direcciones" que son las "menos importantes".
+
+![](https://miro.medium.com/max/640/1*wsezmnzg-0N_RP3meYNXlQ.png){fig-align="center"}
+:::
+
+------------------------------------------------------------------------
+
+#### Algoritmo
+
+::: {style="font-size: 80%; "}
+-   Tome la matriz de variables independientes $X$ y, para cada columna, reste la media de esa columna de cada entrada.
+
+-   Si la importancia de las características es independiente de la varianza de las características, divida cada observación en una columna por la desviación estándar de esa columna.Esta matriz es llamada $Z$.
+
+-   Calcular la matriz de covarianzas $C = Z'Z$
+
+-   Calcule los vectores propios y sus valores propios correspondientes a la matriz de covarianzas $C$. Usando la descomposición de valores singulares *SVD* en donde se descompone como $C = LVL^T$, donde $L$ es la matriz de vectores propios y $V$ es la matriz diagonal con valores propios en la diagonal y valores de cero en cualquier otro lugar.
+:::
+
+------------------------------------------------------------------------
+
+::: {style="font-size: 80%; "}
+-   Tome los valores propios $\lambda_1, \lambda_2, \dots, \lambda_p$ p y ordénelos de mayor a menor. Al hacerlo, ordene los vectores propios en $L$ en consecuencia.Esta matriz ordenada de vectores propios se llama $L^*$
+
+-   Calcula $Z^* = ZL^*$ . Esta nueva matriz, $Z^*$ , es una versión centrada/estandarizada de $X$ pero ahora cada observación es una combinación de las variables originales, donde los pesos están determinados por el vector propio.
+
+![](https://miro.medium.com/max/720/1*V3JWBvxB92Uo116Bpxa3Tw.png){fig-align="center"}
+:::
+
+------------------------------------------------------------------------
+
+#### 
+
+::: {style="font-size: 80%; "}
+El PCA puede ponderarse localmente en el espacio de los atributos (LWPCA) o en espacio geográfico (GWPCA) para tener en cuenta ciertas heterogeneidades.
+
+-   En el primer caso, LWPCA, suponemos la estructura de covarianza es homogénea para las observaciones que están cerca unas de otras en el espacio de atributos, $𝐿_𝑖 𝑉_𝑖 𝐿_𝑖^𝑇=𝐶_𝑖$
+
+-   El segundo, el GWPCA para la ubicación $(𝑆_𝑖, 𝑆_𝑗 )$, es escrito como, $𝐿𝑉𝐿^𝑇 |(𝑆_𝑖, 𝑆_𝑗 )=𝐶(𝑆_𝑖, 𝑆_𝑗)$
+:::
+
+------------------------------------------------------------------------
+
+### 1.4. El tratamiento de los datos faltantes
+
+::: {style="font-size: 80%; "}
+Hay diferentes maneras de abordar los valores que faltan, como: - La agregación de datos en una granularidad más gruesa - La eliminación de las observaciones con valores perdidos del conjunto de datos - La imputación de valores
+
+Los métodos de predicción espacial siempre pueden utilizarse para imputar valores para conjuntos de datos con valores perdidos
+
+Los enfoques más conocidos para la predicción espacial son los modelos estadísticos espaciales (por ejemplo, la regresión ponderada geográficamente) y los modelos geoestadísticos, como kriging
+
+El análisis probabilístico de componentes principales (PPCA), por ejemplo, es una extensión probabilística de PCA y se ha utilizado para imputar valores perdidos
+:::
+
+## 2. Algoritmo de aprendizaje
+
+::: {style="font-size: 80%;"}
+En lugar de generar nuevas características espaciales y procesarlas con los métodos tradicionales de aprendizaje de aprendizaje automático, podemos incorporar directamente las propiedades espaciales en el algoritmo de aprendizaje.
+
+Entre todos los métodos de ML, los modelos más utilizados son: 2.1. Los árboles de decisión (DT) 2.2. Los bosques aleatorios 2.3. Las máquinas de soporte (SVM) 2.4. Las redes neuronales 2.5. Las redes neuronales profundas (DNN)
+:::
+
+------------------------------------------------------------------------
+
+### 2.1. Los árboles de decisión (DT)
+
+#### Estructura
+
+::: {style="font-size: 80%;"}
+Un árbol consta esencialmente de tres componentes principales: La raíz, las ramas y los nodos.
+
+![](https://miro.medium.com/max/720/1*Ru0tIhJBdv__T0LfYxL9Gw.png){fig-align="center"}
+:::
+
+------------------------------------------------------------------------
+
+::: {style="font-size: 80%;"}
+-   Los árboles de decisión (DT) son métodos populares de ML adaptados a los problemas espaciales para superar la violación del supuesto de i.i.d. Como clase, los clasificadores de árboles de decisión basados en la entropía espacial utilizan la ganancia de información junto con la autocorrelación espacial para seleccionar las pruebas de los nodos de los árboles candidatos en un marco espacial rasterizado.
+
+-   Uno de los problemas más frecuentes problemas que se producen en la clasificación de imágenes mediante árboles de decisión es el ruido de sal y pimienta
+:::
+
+------------------------------------------------------------------------
+
+::: {style="font-size: 80%;"}
+-   El ruido de sal y pimienta se produce cuando la etiqueta predicha de un píxel específico difiere de sus píxeles vecinos y puede ser el resultado de una alta autocorrelación espacial en las etiquetas de clase de los datos de muestra utilizados para el entrenamiento
+
+-   Jiang et al. (2003) proponen un árbol de decisión espacial basado en pruebas focales (FTSDT), en el que la dirección de recorrido del árbol de una muestra de aprendizaje se basa en las propiedades locales y focales (de vecindad) de las características. Utilizan indicadores locales de asociación espacial - Lisa - como estadísticas de autocorrelación espacial para medir la dependencia espacial entre los píxeles de la vecindad.
+:::
+
+------------------------------------------------------------------------
+
+### 2.2. Los bosques aleatorios
+
+![](https://miro.medium.com/max/720/1*MkeRi6EMvvZvUpHmQU0dWg.webp){fig-align="center"}
+
+------------------------------------------------------------------------
+
+## ![](https://miro.medium.com/max/720/1*F5jHRWCpYqGhaPWCusfJhQ.png){fig-align="center"}
+
+#### Paso a paso
+
+::: {style="font-size: 80%;"}
+-   Seleccione muestras aleatorias del conjunto de datos utilizando la agregación bootstrap.
+
+-   Construya un árbol de decisión para cada muestra y guarde los resultados de predicción de cada árbol.
+
+-   Calcule un voto para cada resultado predicho.
+
+-   Determine qué resultado predicho tiene más votos. Esta será su predicción final.
+:::
+
+------------------------------------------------------------------------
+
+::: {style="font-size: 80%;"}
+-   Se han desarrollado versiones ponderadas geográficamente de los árboles de decisión para para tener en cuenta la heterogeneidad espacial.
+
+-   Quiñones et al. (2021) presentaron un bosque aleatorio ponderado geográficamente (GW-RF) de la diabetes tipo 2 y los factores de riesgo en los condados de Estados Unidos.
+
+-   De forma similar a la regresión ponderada geográficamente (GWR), la matriz de pesos espaciales y los bosques aleatorios (RF) se integran en un marco de análisis de regresión local.
+:::
+
+------------------------------------------------------------------------
+
+### 2.3. Las máquinas de soporte vectorial (SVM)
+
+::: {style="font-size: 80%;"}
+-   Este método se basa en la separación de clases mediante un hiperplano (Clasificador de margen máximo)
+
+-   Las máquinas de soporte vectorial (SVM) se han utilizado para problemas de clasificación y regresión. La idea de la SVM es mapear el espacio de entrada original a un espacio de características de mayor dimensionalidad en el que las observaciones son separables por hiperplanos
+
+-   $\xi$ se llama término de regularización. Los términos de regularización se colocan en la función objetivo para controlar la complejidad del modelo y evitar el sobreajuste
+:::
+
+------------------------------------------------------------------------
+
+![](Graficas/Fig.%203.2.png){fig-align="center"}
+
+------------------------------------------------------------------------
+
+::: {style="font-size: 80%;"}
+¿Y si no existe ningún plano de separación?
+
+![](https://miro.medium.com/max/720/1*tSLHw6cFWFUeYVeO_ahyQQ.webp){fig-align="center"}
+
+-   En este caso, no existe un clasificador de margen máximo.
+
+-   Utilizamos un clasificador de vectores de soporte que casi puede separar las clases utilizando un margen suave llamado clasificador de vectores de soporte.
+:::
+
+------------------------------------------------------------------------
+
+::: {style="font-size: 80%;"}
+La máquina de vectores de soporte es una extensión del clasificador de vectores de soporte que resulta de la ampliación del espacio de características mediante kernels.
+
+![](https://editor.analyticsvidhya.com/uploads/1403824.png){fig-align="center"}
+:::
+
+------------------------------------------------------------------------
+
+![](https://miro.medium.com/max/720/1*YFvTJzdaamy1d1zT7oSMLw.webp){fig-align="center"}
+
+------------------------------------------------------------------------
+
+::: {style="font-size: 80%;"}
+-   Lee et al. (2005) sugirieron una extensión de la SVM denominada campo aleatorio de vectores de soporte que modela explícitamente las dependencias espaciales en la clasificación utilizando campos aleatorios condicionales (CRF).
+
+-   El modelo contiene dos componentes: la función potencial de coincidencia de observaciones y la función potencial de consistencia local. La primera modela la relación entre las observaciones y las etiquetas de clase utilizando un clasificador SVM, y la segunda modela la relación con las etiquetas del vecindario. La función de potencial de consistencia local penaliza la discontinuidad entre los sitios pares.
+:::
+
+------------------------------------------------------------------------
+
+### 2.4. Las redes neuronales profundas (DNN)
+
+::: {style="font-size: 80%;"}
+-   Las DNNs suelen estar compuestas por varios módulos no lineales pero sencillos que representan datos a diferentes niveles.
+
+-   Partiendo de los datos en bruto, cada módulo transforma la representación de un nivel en una representación de un nivel superior (más abstracto). En el proceso y utilizando el algoritmo de retropropagación (backpropagation), la máquina puede aprender funciones muy complejas
+:::
+
+------------------------------------------------------------------------
+
+![](Graficas/Fig.%203.3.png){fig-align="center"}
+
+------------------------------------------------------------------------
+
+::: {style="font-size: 80%;"}
+Las redes neuronales más populares para datos espaciales pueden clasificarse a grandes rasgos en cuatro categorías:
+
+-   Redes neuronales convolucionales (CNN)
+-   Redes neuronales gráficas profundas (GNN)
+-   Redes neuronales generativas
+-   Las redes neuronales recurrentes (RNN) cuando se combinan con las CNN
+:::
+
+------------------------------------------------------------------------
+
+#### Las redes neuronales convolucionales (CNN)
+
+::: {style="font-size: 80%;"}
+-   Incluyen capas convolucionales y capas de agrupación.
+
+-   Las capas convolucionales funcionan a partir de la convolución de una ventana deslizante (filtro) con los valores de los píxeles de la imagen. Los pesos del filtro se determinan automáticamente a través del proceso de aprendizaje de la red.
+
+![](Graficas/Fig.%203.4.png){fig-align="center"}
+:::
+
+------------------------------------------------------------------------
+
+#### Arquitectura
+
+![](https://miro.medium.com/max/720/1*uAeANQIOQPqWZnnuH-VEyw.webp){fig-align="center"}
+
+------------------------------------------------------------------------
+
+#### Imagen de entrada
+
+![](https://miro.medium.com/max/640/1*15yDvGKV47a0nkf5qLKOOQ.webp){fig-align="center"}
+
+------------------------------------------------------------------------
+
+#### Capa de convolución - Kernel
+
+![](https://miro.medium.com/max/640/1*GcI7G-JLAQiEoCON7xFbhg.gif){fig-align="center"}
+
+------------------------------------------------------------------------
+
+![](https://miro.medium.com/max/720/1*ciDgQEjViWLnCbmX-EeSrA.gif){fig-align="center"}
+
+------------------------------------------------------------------------
+
+#### Capa de agrupación
+
+![](https://miro.medium.com/max/640/1*uoWYsCV5vBU8SHFPAPao-w.gif){fig-align="center"}
+
+------------------------------------------------------------------------
+
+![](https://miro.medium.com/max/640/1*KQIEqhxzICU7thjaQBfPBQ.webp){fig-align="center"}
+
+------------------------------------------------------------------------
+
+![](https://miro.medium.com/max/720/1*uAeANQIOQPqWZnnuH-VEyw.webp){fig-align="center"}
+
+------------------------------------------------------------------------
+
+::: {style="font-size: 80%;"}
+-   Esta característica de las CNN se ha utilizado de forma limitada para definir automáticamente los pesos de la matriz W en otras aplicaciones espaciales.
+
+-   Las capas de pooling agregan los píxeles vecinos en un único píxel, reduciendo las dimensiones totales de la imagen.
+
+-   A medida que aumenta el número de capas convolucionales y de pooling, la red se vuelve más profunda y puede extraer características más abstractas. Una red de clasificación sigue finalmente el procesamiento de estas capas.
+:::
+
+------------------------------------------------------------------------
+
+### 2.5. Precisión espacial
+
+::: {style="font-size: 80%;"}
+-   Las medidas de la precisión de los datos espaciales son esenciales para ser consideradas en la función objetivo en el aprendizaje automático para una serie de aplicaciones geoespaciales.
+
+-   Cuando las variables están rasterizadas, una forma típica de evaluar la precisión de la predicción es medir la similitud entre los mapas predichos y los reales.
+
+$$F = Similaridad(\text{Presición de la Clasificación})$$
+:::
+
+------------------------------------------------------------------------
+
+::: {style="font-size: 80%;"}
+-   Los autores sugieren añadir un término a la función objetivo para medir la precisión espacial precisión espacial, que podría ser la distancia media a la predicción más cercana. Por lo tanto, podemos reescribir la función objetivo como sigue:
+
+$$F = Similaridad[(1 - \alpha)\text{Presición de la Clasificación} + \alpha \text{Presición espacial}]$$ donde $\alpha$ es un parámetro regularizador que se ajusta durante el entrenamiento.
+
+![](Graficas/Fig.%203.5.png){fig-align="center"}
+:::
+
+------------------------------------------------------------------------
+
+### 2.6. Generalización
+
+::: {style="font-size: 80%;"}
+-   La generalización es la capacidad de generalizar un modelo entrenado basado en un conjunto de datos a conjuntos de datos futuros.
+
+-   Un conjunto de datos suele dividirse en tres conjuntos mutuamente excluyentes:
+
+    -   Un conjunto de entrenamiento
+    -   Un conjunto de validación
+    -   Un conjunto de prueba
+
+-   En cada iteración ajustamos un modelo a nuestro conjunto de datos de entrenamiento y calculamos una función objetivo para medir el rendimiento del aprendizaje.
+:::
+
+------------------------------------------------------------------------
+
+::: {style="font-size: 80%;"}
+-   Se utiliza el conjunto de datos de validación para evaluar la capacidad del modelo para ajustarse a otro conjunto de datos para la generalización.
+
+-   Con el conjunto de datos de prueba se pueden utilizar métodos de validación más complejos, como la validación cruzada k-fold, para garantizar el mejor ajuste de los conjuntos de datos de entrenamiento, prueba y validación.
+:::
+
+# Aprendizaje espacio - tiemporal {background-color="#581845"}
+
+## Las redes convolucionales de memoria a corto plazo (LSTM)
+
+::: {style="font-size: 80%;"}
+-   Las redes neuronales recurrentes convolucionales (RNN) y, en especial, las redes convolucionales de memoria a corto plazo (LSTM) pueden aplicarse ampliamente al aprendizaje espacio-temporal de los datos de la red datos.
+
+-   LSTM es un tipo de red neuronal recurrente con la capacidad de memorizar dependencias temporales en los datos. La combinación de esta característica con el poder de las CNN para para aprender las características espaciales jerárquicas puede proporcionar un modelo automático de ML de un solo paso para para tener en cuenta la dependencia espacio-temporal
+:::
+
+------------------------------------------------------------------------
+
+### Red Neuronal Recurente (RNN) y LSTM
+
+::: {style="font-size: 80%;"}
+-   Las redes neuronales recurrentes sufren de memoria a corto plazo. Si una secuencia es lo suficientemente larga, tendrán dificultades para llevar información de pasos de tiempo anteriores a los posteriores.
+
+-   LSTM se creo como solución a la memoria a corto plazo. Tienen mecanismos internos llamados puertas que pueden regular el flujo de información.
+
+-   Estas puertas pueden aprender qué datos en una secuencia es importante conservar o desechar. Al hacerlo, puede pasar información relevante a lo largo de la larga cadena de secuencias para hacer predicciones.
+:::
+
+------------------------------------------------------------------------
+
+::: {style="font-size: 80%;"}
+Un RNN funciona así; Las primeras palabras se transforman en vectores legibles por máquina. Luego, la RNN procesa la secuencia de vectores uno por uno.
+
+![](https://miro.medium.com/max/720/1*AQ52bwW55GsJt6HTxPDuMA.gif){fig-align="center" width="900" height="325"}
+:::
+
+------------------------------------------------------------------------
+
+::: {style="font-size: 80%;"}
+Pasa el estado oculto anterior al siguiente paso de la secuencia. El estado oculto actúa como la memoria de las redes neuronales.
+
+![](https://miro.medium.com/max/1400/1*o-Cq5U8-tfa1_ve2Pf3nfg.gif){fig-align="center"}
+:::
+
+------------------------------------------------------------------------
+
+::: {style="font-size: 80%;"}
+Primero, la entrada y el estado oculto anterior se combinan para formar un vector. Ese vector ahora tiene información sobre la entrada actual y las entradas anteriores. El vector pasa por la activación de tanh y la salida es el nuevo estado oculto, o la memoria de la red.
+
+![](https://miro.medium.com/max/1400/1*WMnFSJHzOloFlJHU6fVN-g.gif){fig-align="center"}
+:::
+
+------------------------------------------------------------------------
+
+::: {style="font-size: 80%;"}
+La activación de tanh se utiliza para ayudar a regular los valores que fluyen a través de la red. La función tanh reduce los valores para que siempre estén entre -1 y 1.
+
+![](https://miro.medium.com/max/1400/1*iRlEg1GBKRzGTre5aOQUCg.gif){fig-align="center" width="550" height="250"}
+
+![](https://miro.medium.com/max/1400/1*gFC2bTg3uihp1klknWU0qg.gif){fig-align="center"}
+:::
+
+------------------------------------------------------------------------
+
+#### LSTM
+
+::: {style="font-size: 80%;"}
+Un LSTM tiene un flujo de control similar al de una red neuronal recurrente. Procesa los datos que transmiten información a medida que se propaga hacia adelante. Las diferencias son las operaciones dentro de las células del LSTM.
+
+Estas operaciones se utilizan para permitir que el LSTM conserve u olvide información.
+
+![](https://miro.medium.com/max/1400/1*0f8r3Vd-i4ueYND1CUrhMA.webp){fig-align="center" width="700" height="400"}
+:::
+
+------------------------------------------------------------------------
+
+#### Sigmoideo
+
+::: {style="font-size: 80%;"}
+-   Gates contiene activaciones sigmoideas. Una activación sigmoidea es similar a la activación de tanh. En lugar de aplastar los valores entre -1 y 1, aplasta los valores entre 0 y 1. Eso es útil para actualizar u olvidar datos porque cualquier número que se multiplique por 0 es 0, lo que hace que los valores desaparezcan o se "olviden".
+
+![](https://miro.medium.com/max/1400/1*rOFozAke2DX5BmsX2ubovw.gif){fig-align="center"}
+:::
+
+------------------------------------------------------------------------
+
+#### Puerta de olvido
+
+::: {style="font-size: 80%;"}
+Primero, tenemos la puerta del olvido. Esta puerta decide qué información debe desecharse o conservarse. La información del estado oculto anterior y la información de la entrada actual se pasan a través de la función sigmoidea.
+
+![](https://miro.medium.com/max/1400/1*GjehOa513_BgpDDP6Vkw2Q.gif){fig-align="center"}
+:::
+
+------------------------------------------------------------------------
+
+#### Puerta de entrada
+
+::: {style="font-size: 80%;"}
+Para actualizar el estado de la celda, tenemos la puerta de entrada. Primero, pasamos el estado oculto anterior y la entrada actual a una función sigmoidea.
+
+También pasa el estado oculto y la entrada actual a la función tanh para reducir los valores entre -1 y 1 para ayudar a regular la red.
+
+Luego, multiplica la salida de tanh con la salida sigmoidea. La salida sigmoide decidirá qué información es importante mantener de la salida tanh.
+
+![](https://miro.medium.com/max/1400/1*TTmYy7Sy8uUXxUXfzmoKbA.gif){fig-align="center" width="700" height="350"}
+:::
+
+------------------------------------------------------------------------
+
+#### Estado de la celda
+
+::: {style="font-size: 80%;"}
+Ahora deberíamos tener suficiente información para calcular el estado de la celda. Primero, el estado de la celda se multiplica puntualmente por el vector de olvido.
+
+Luego tomamos la salida de la puerta de entrada y hacemos una suma puntual que actualiza el estado de la celda a nuevos valores que la red neuronal considera relevantes. Eso nos da nuestro nuevo estado de la celda.
+
+![](https://miro.medium.com/max/1400/1*S0rXIeO_VoUVOyrYHckUWg.gif){fig-align="center" width="700" height="350"}
+:::
+
+------------------------------------------------------------------------
+
+#### Puerta de salida
+
+::: {style="font-size: 80%;"}
+Por último tenemos la puerta de salida. La puerta de salida decide cuál debería ser el siguiente estado oculto.
+
+Primero, pasamos el estado oculto anterior y la entrada actual a una función sigmoidea. Luego pasamos el estado de celda recién modificado a la función tanh. Multiplicamos la salida de tanh con la salida sigmoide para decidir qué información debe llevar el estado oculto. La salida es el estado oculto. El nuevo estado de celda y el nuevo oculto se transfieren al siguiente paso de tiempo.
+
+![](https://miro.medium.com/max/1400/1*VOXRGhOShoWWks6ouoDN3Q.gif){fig-align="center" width="700" height="340"}
+:::
+
+# Gracias {background-color="#581845"}
